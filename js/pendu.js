@@ -5,7 +5,7 @@ $(function() {
         return Math.floor(Math.random() * Math.floor(max));
     }
 
-    // Fonction qui crée un mot composé uniquemet de # de meme longueur que le mot à trouver
+    // Fonction qui crée un mot composé uniquement de '#' de même longueur que le mot à trouver
     function constructWord(mot, caracetere) {
         let newW = '';
         for (let i = 0; i < mot.length; i++) {
@@ -25,10 +25,10 @@ $(function() {
     function tourDeJeu() {
         // nbr de tour
         compteur++;
-        // affichage dans le bouton start du compteur
+        // affichage du compteur dans le bouton start du compteur
         btn_compteur.innerText = compteur.toString();
         console.log('nbr de fautes: ' + compteur); // ######################################
-        // affichage / chagement de l'image du pendu
+        // affichage / changement de l'image du pendu
         $('#img-pendu').attr('src', 'img/Le-Pendu' + (indiceImg + 1) + '.png');
         indiceImg++;
     }
@@ -45,22 +45,6 @@ $(function() {
             }
         }
     }
-
-    // NE MARCHE PAS
-    /*function lire_fichier() {
-        $.ajax({
-            type: "GET",
-            url: '/liste_francais.txt',
-            error: function(msg) {
-                // message en cas d'erreur :
-                alert("Error !: " + msg);
-            },
-            success: function(data) {
-                // affiche le contenu du fichier dans le conteneur dédié :
-                $('.test').text(data.split('\n'));
-            }
-        });
-    }*/
 
     // Variables
     let words = [];
@@ -94,7 +78,7 @@ $(function() {
         // vide le contenu des elements
         $('.word').html('');
         $('#choice-letter').val('');
-        $('#reponse').val(''); // ne marche pas
+        $('#reponse').val('');
         $('.letter').html('');
         btn_compteur.innerText = "start"
         $('#img-pendu').attr('src', 'img/Le-Pendu0.png');
@@ -129,7 +113,7 @@ $(function() {
             e.preventDefault();
 
 
-            // recuperation de la valeur du input
+            // récupération de la valeur du input
             let proposition = $('#choice-letter').val().toUpperCase();
             console.log('3-lettre proposée: ' + proposition[0]); // ####################################
 
@@ -138,7 +122,7 @@ $(function() {
                 $('.letter').append('<span>' + proposition[0] + '</span>');
             }
 
-            // comparaison entre le mot a trouver et la proposition (un character)
+            // comparaison entre le mot à trouver et la proposition (char)
             for (let i = 0; i < word.length; i++) {
                 // on récupère la lettre du mot à trouver
                 let lettreATrouver = word[i].toUpperCase();
@@ -148,15 +132,11 @@ $(function() {
                     $('.word>span:eq(' + i + ')').text(lettreATrouver);
 
                     // on récupère la propostion complète /  le mot proposé
-                    // on construit le mot proposé au fure et à mesure
+                    // on construit le mot proposé au fur et à mesure
                     propositionComplete = $('.word').text();
-                    console.log('4-mot proposée: ' + propositionComplete); // #############
+                    console.log('4-mot proposée: ' + propositionComplete); // ##########################
                 }
             }
-
-            /*if (propositionComplete.indexOf('#') === -1) {
-                console.log('plus de #');
-            }*/
 
             word = word.toUpperCase();
             console.log('-----> word initiale: ' + word);
@@ -186,8 +166,3 @@ $(function() {
     });
 
 });
-
-
-/*$("form").submit(function() {
-    alert("Submitted");
-});*/
